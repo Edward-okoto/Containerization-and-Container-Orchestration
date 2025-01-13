@@ -34,6 +34,7 @@ You are developing a Simple Static Website(HTML and CSS) for a company's landing
 *  Inside the directory, Create an HTML (index.html) and CSS file( styles.css).
 
         touch index.html styles.css
+    The `touch` command in Linux is pretty versatile. Its primary function is to create an empty file, but it can also be used to change file timestamps.
 
     ![](./img/c4.png)
 
@@ -44,6 +45,8 @@ You are developing a Simple Static Website(HTML and CSS) for a company's landing
   * Create a new project on your local machine
 
         mkdir MyWorkProject
+
+    The `mkdir` command in Linux is used to create directories. It's pretty straightforward but can be very powerful when combined with other options.
 
     ![](./img/c5.png)
 
@@ -89,6 +92,8 @@ https://github.com/Edward-okoto/Setting-Up-Minikube
 
 **Create a `Dockerfile` specifying Nginx as the base image**
 
+A `Dockerfile` is a script that contains instructions on how to build a Docker image. Think of it as a recipe for creating a containerized application, specifying the base image, required software, environment variables, and commands to run within the container. It's used by Docker to automate the process of creating and configuring containers
+
  `Dockerfile` that uses Nginx as the base image:
 
 ```dockerfile
@@ -118,7 +123,7 @@ Save this content in a file named `Dockerfile` and use it to build your Docker i
 ```sh
 docker build -t my-nginx-image .
 ```
-
+The `docker build` command is used to create a Docker image from a Dockerfile. Essentially, it compiles the instructions in the Dockerfile into a runnable image that can be used to create containers. You run it by specifying the path to the Dockerfile and a context (which is usually the directory containing the Dockerfile).
 
 ![](./img/c10.png)
 
@@ -134,7 +139,11 @@ The command `docker build -t my-nginx-image .` builds a Docker image from the Do
 
 ![](./img/c12.png)
 
-Confirm the image has been created.
+Confirm the image has been created 
+
+    docker images
+
+The `docker images` command displays a list of all Docker images on your local machine. It shows the repository name, tags, image IDs, creation dates, and sizes. This command is essential for managing and organizing your Docker images effectively
 
 ![](./img/c13.png)
 
@@ -146,6 +155,8 @@ Confirm the image has been created.
 
     The command `docker login -u <username>` logs you into Docker Hub or another Docker registry using the specified username.  
 
+     ![](./img/c14.png)
+
 * Push the Docker Image to Docker Hub
 
         docker tag my-nginx-image edwardokoto1/nginx:1.0
@@ -156,13 +167,25 @@ Confirm the image has been created.
     The command `docker push` uploads a Docker image to a Docker registry, such as Docker Hub.
 
 
-  ### Set Up a Kind (Kubernetes Cluster)
+**Set Up a Kind (Kubernetes Cluster)**
 
   * Install kind (Kubernetes in Docker)
+### Install Kind
+ You can do this by running the following command:
+```bash
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
+chmod +x ./kind
+mv ./kind /usr/local/bin/kind
+```
+The `curl` command in Linux is a powerful tool used to transfer data to or from a server. It supports a variety of protocols, including HTTP, HTTPS, FTP, and more.
+### Create a Kind Cluster
+Once Kind is installed, you can create a Kubernetes cluster by running:
+```bash
+kind create cluster
+```
+This command sets up a single-node Kubernetes cluster using Docker.
+
   * Create a kind Cluster
-
-    ![](./img/c14.png)
-
 
 
 ### Deploy to Kubernetes
