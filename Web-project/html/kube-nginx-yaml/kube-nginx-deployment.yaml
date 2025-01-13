@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-nginx-deployment
+spec:
+  replicas: 1  # Number of replicas
+  selector:
+    matchLabels:
+      app: kube-nginx
+  template:
+    metadata:
+      labels:
+        app: kube-nginx
+    spec:
+      containers:
+      - name: kube-nginx
+        image: edwardokoto1/nginx:1.0  # Replace with your desired image
+        ports:
+        - containerPort: 80
